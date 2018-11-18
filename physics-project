@@ -31,11 +31,11 @@ mars.pos = vector(2.28e11,0,0)
 jupiter.pos = vector(7.78e1,0,0)
 #
 sun.mass  = 2e30                    # Mass of the Sun   (kg)
-mercury.mass = 
-venus.mass = 
+mercury.mass = 3.285e23
+venus.mass = 4.867e24
 earth.mass = 6e24                  # Mass of the Earth (kg)
-mars.mass = 
-jupiter.mass = 
+mars.mass = 6.39e23
+jupiter.mass = 1.898e27
 #
 mercury.velocity = 
 venus.velocity = 
