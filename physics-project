@@ -24,11 +24,11 @@ jupiter = sphere(color = color.orange)
 #
 G = 6.67e-11                            # Gravitational constant (Nm**2/kg**2)
 sun.pos = vector(0,0,0)         # Initial Sun position (m)
-mercury.pos = 
-venus.pos = 
+mercury.pos = vector(5.8e10,0,0)
+venus.pos = vector(1.08e11,0,0)
 earth.pos = vector(1.5e11,0,0)       # Initial Earth position (m)
-mars.pos = 
-jupiter.pos = 
+mars.pos = vector(2.28e11,0,0)
+jupiter.pos = vector(7.78e1,0,0)
 #
 sun.mass  = 2e30                    # Mass of the Sun   (kg)
 mercury.mass = 
