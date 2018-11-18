@@ -1,0 +1,138 @@
+
+#
+# VPython shell for planetary orbit program assignment
+#
+from visual import *
+#
+# Define the display window.
+#
+scene = display(title = "Earth's Orbit", width = 500, height = 500, range = 3.e11)
+#
+scene.autoscale = 0              # Turn off auto scaling of display.
+#
+# Define the Sun and the Earth objects.
+#
+sun = sphere(color = color.yellow)
+mercury = 
+venus = 
+earth  = sphere(color = color.blue)
+mars = 
+jupiter =
+#
+# Set up the constants and initial conditions that will be needed by 
+# the program. Work these out in advance and enter them here.
+#
+G = 6.67e-11                            # Gravitational constant (Nm**2/kg**2)
+sun.pos = vector(0,0,0)         # Initial Sun position (m)
+mercury.pos = 
+venus.pos = 
+earth.pos = vector(1.5e11,0,0)       # Initial Earth position (m)
+mars.pos = 
+jupiter.pos = 
+#
+sun.mass  = 2e30                    # Mass of the Sun   (kg)
+mercury.mass = 
+venus.mass = 
+earth.mass = 6e24                  # Mass of the Earth (kg)
+mars.mass = 
+jupiter.mass = 
+#
+mercury.velocity = 
+venus.velocity = 
+earth.velocity = vector(0,30000,0)  # Initial velocity of the Earth (m/s)
+mars.velocity = 
+jupiter.velocity =  
+#
+dt = 1e4                         # time increment in seconds (choose a sensible value)
+#
+total = 0                       # initialize the total elapsed time
+#
+# Scale factors to control how big the Earth and Sun are drawn in the display.
+#
+sun.scale   = 1e1
+earth.scale = 5e2
+#
+sun.radius   = 7.e8 * sun.scale
+mercury.radius = 
+venus.radius =
+earth.radius = 6.4e6 * earth.scale
+mars.radius =
+jupiter.radius = 
+#
+# Initialize the momentum and path of the Earth.
+#
+mercury.momentum = 
+venus.momentum = 
+earth.momentum = vector(earth.mass * mag(earth.velocity) * norm(earth.velocity))       # momentum of the earth
+mars.momentum = 
+jupiter.momentum = 
+#
+mercury.trail = 
+venus.trail = 
+earth.trail = curve(color = earth.color)           # define the Earth's path
+mars.trail = 
+jupiter.trail = 
+#
+mercury.trail.append(pos = mercury.pos)
+venus.trail.append(pos = venus.pos)
+earth.trail.append(pos = earth.pos)                # set initial position of the Earth 
+mars.trail.append(pos = mars.pos)
+jupiter.trail.append(pos = jupiter.pos)
+#
+# Define an arrow that points from the origin to the Earth.
+#
+mercury.arrow = 
+venus.arrow = 
+earth.arrow = arrow(pos = (0,0,0), axis = earth.pos, color = earth.color, shaftwidth = 1e6)
+mars.arrow =
+ 
+#
+tmax = 3600 * 24 * 365.25                         # number of seconds in a year
+#
+# Start of the loop.
+#
+while (total < tmax):
+#
+    rate(100)         # limit the loop to a maximum of 100 times per second.
+#
+# Fill in the next 3 lines with the correct expressions
+#
+Mercury.force
+Mercury.momentum
+Mercury.pos
+
+Venus.force
+Venus.momentum
+Venus.pos
+
+    earth.force = -G*sun.mass*earth.mass / mag2(earth.pos)*norm(earth.pos)   # compute the force that the Sun exerts on the Earth.
+    earth.momentum = earth.momentum + dt*earth.force             # update the Earth's momentum
+    earth.pos = earth.pos + dt * earth.momentum / earth.mass      # update the Earth's position
+#
+
+Mars.force
+Mars.momentum
+Mars.pos
+
+Jupiter.force
+Jupiter.momentum
+Jupiter.pos
+
+    mercury.trail.append(pos = mercury.pos)
+venus.trail.append(pos = venus.pos)
+earth.trail.append(pos = earth.pos)               
+mars.trail.append(pos = mars.pos)
+jupiter.trail.append(pos = jupiter.pos)
+
+Mercury.arrow.axis = mercury.pos
+Venus.arrow.axis = venus.pos    
+earth.arrow.axis = earth.pos             # move the Earth's position arrow
+Mars.arrow.axis = mars.pos
+Jupiter.arrow.axis = jupiter.pos
+#
+    total = total + dt                   # increment the time
+#
+# print this when the loop is done.
+#
+print earth.pos
+print 'All done.'
