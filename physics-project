@@ -14,10 +14,10 @@ scene.autoscale = 0              # Turn off auto scaling of display.
 #
 sun = sphere(color = color.yellow)
 mercury = sphere(color = color.magenta)
-venus = 
+venus = sphere(color = color.yellow)
 earth  = sphere(color = color.blue)
-mars = 
-jupiter =
+mars = sphere(color = color.red)
+jupiter = sphere(color = color.orange)
 #
 # Set up the constants and initial conditions that will be needed by 
 # the program. Work these out in advance and enter them here.
