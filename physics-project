@@ -125,13 +125,23 @@ venus.pos
     earth.pos = earth.pos + dt * earth.momentum / earth.mass      # update the Earth's position
 #
 
-Mars.force
-Mars.momentum
-Mars.pos
+marssun = 
+marsmercury = - mercurymars
+marsvenus = - venusmars
+marsearth = - earthmars
+marsjupiter = 
+marstotal.force = marssun + marsmercury + marsvenus + marsearth + marsjupiter
+mars.momentum = 
+mars.pos = 
 
-Jupiter.force
-Jupiter.momentum
-Jupiter.pos
+jupitersun = 
+jupitermercury = - mercuryjupiter
+jupitervenus = - venusjupiter
+jupiterearth = - earthjupiter
+jupitermars = - marsjupiter
+jupitertotal.force = jupitersun + jupitermercury + jupitervenus + jupiterearth + jupitermars
+jupiter.momentum = 
+jupiter.pos =
 
     mercury.trail.append(pos = mercury.pos)
 venus.trail.append(pos = venus.pos)
