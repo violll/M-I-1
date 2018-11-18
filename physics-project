@@ -61,17 +61,17 @@ jupiter.radius =
 #
 # Initialize the momentum and path of the Earth.
 #
-mercury.momentum = 
-venus.momentum = 
+mercury.momentum = vector(mercury.mass * mag(mercury.velocity) * norm(mercury.velocity))
+venus.momentum = vector(venus.mass * mag(venus.velocity) * norm(venus.velocity))
 earth.momentum = vector(earth.mass * mag(earth.velocity) * norm(earth.velocity))       # momentum of the earth
-mars.momentum = 
-jupiter.momentum = 
+mars.momentum = vector(mars.mass * mag(mars.velocity) * norm(mars.velocity))
+jupiter.momentum = vector(jupiter.mass * mag(jupiter.velocity) * norm(jupiter.velocity))
 #
-mercury.trail = 
-venus.trail = 
+mercury.trail = curve(color = mercury.color)
+venus.trail = curve(color = venus.color)
 earth.trail = curve(color = earth.color)           # define the Earth's path
-mars.trail = 
-jupiter.trail = 
+mars.trail = curve(color = mars.color)
+jupiter.trail = curve(color = jupiter.color)
 #
 mercury.trail.append(pos = mercury.pos)
 venus.trail.append(pos = venus.pos)
