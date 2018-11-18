@@ -125,21 +125,21 @@ venus.pos
     earth.pos = earth.pos + dt * earth.momentum / earth.mass      # update the Earth's position
 #
 
-marssun = 
-marsmercury = - mercurymars
-marsvenus = - venusmars
-marsearth = - earthmars
-marsjupiter = 
-marstotal.force = marssun + marsmercury + marsvenus + marsearth + marsjupiter
+marssun.force = 
+marsmercury.force = -mercurymars.force
+marsvenus.force = -venusmars.force
+marsearth.force = -earthmars.force
+marsjupiter.force = 
+marstotal.force = marssun.force + marsmercury.force + marsvenus.force + marsearth.force + marsjupiter.force
 mars.momentum = 
 mars.pos = 
 
-jupitersun = 
-jupitermercury = - mercuryjupiter
-jupitervenus = - venusjupiter
-jupiterearth = - earthjupiter
-jupitermars = - marsjupiter
-jupitertotal.force = jupitersun + jupitermercury + jupitervenus + jupiterearth + jupitermars
+jupitersun.force = 
+jupitermercury.force = -mercuryjupiter.force
+jupitervenus.force = -venusjupiter.force
+jupiterearth.force = -earthjupiter.force
+jupitermars.force = -marsjupiter.force
+jupitertotal.force = jupitersun.force + jupitermercury.force + jupitervenus.force + jupiterearth.force + jupitermars.force
 jupiter.momentum = 
 jupiter.pos =
 
