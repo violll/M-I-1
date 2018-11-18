@@ -53,11 +53,11 @@ sun.scale   = 1e1
 earth.scale = 5e2
 #
 sun.radius   = 7.e8 * sun.scale
-mercury.radius = 
-venus.radius =
+mercury.radius = 2.44e6 * earth.scale
+venus.radius =6e6 * earth.scale
 earth.radius = 6.4e6 * earth.scale
-mars.radius =
-jupiter.radius = 
+mars.radius = 3.4e6 * earth.scale
+jupiter.radius = 69.9e6 * earth.scale
 #
 # Initialize the momentum and path of the Earth.
 #
