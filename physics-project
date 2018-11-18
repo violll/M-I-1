@@ -13,7 +13,7 @@ scene.autoscale = 0              # Turn off auto scaling of display.
 # Define the Sun and the Earth objects.
 #
 sun = sphere(color = color.yellow)
-mercury = 
+mercury = sphere(color = color.magenta)
 venus = 
 earth  = sphere(color = color.blue)
 mars = 
