@@ -80,13 +80,6 @@ mars.trail.append(pos = mars.pos)
 jupiter.trail.append(pos = jupiter.pos)
 #
 # Define an arrow that points from the origin to the Earth.
-#
-mercury.arrow = 
-venus.arrow = 
-earth.arrow = arrow(pos = (0,0,0), axis = earth.pos, color = earth.color, shaftwidth = 1e6)
-mars.arrow =
- 
-#
 tmax = 3600 * 24 * 365.25                         # number of seconds in a year
 #
 # Start of the loop.
@@ -149,11 +142,6 @@ earth.trail.append(pos = earth.pos)
 mars.trail.append(pos = mars.pos)
 jupiter.trail.append(pos = jupiter.pos)
 
-Mercury.arrow.axis = mercury.pos
-Venus.arrow.axis = venus.pos    
-earth.arrow.axis = earth.pos             # move the Earth's position arrow
-Mars.arrow.axis = mars.pos
-Jupiter.arrow.axis = jupiter.pos
 #
     total = total + dt                   # increment the time
 #
