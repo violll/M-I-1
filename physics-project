@@ -142,6 +142,7 @@ while (total < tmax):
     mercurymars.force = -G*mercury.mass*mars.mass/mag2(mars.pos-mercury.pos)*norm(mercury.pos)
     mercuryjupiter.force = -G*mercury.mass*jupiter.mass/mag2(jupiter.pos-mercury.pos)*norm(mercury.pos)
     mercurytotal.force = mercurysun.force + mercuryvenus.force + mercuryearth.force + mercurymars.force + mercuryjupiter.force
+    mercury.force = (-G*mercury.mass*sun.mass/mag2(mercury.pos)*norm(mercury.pos)) + (-G*mercury.mass*venus.mass/mag2(venus.pos-mercury.pos)*norm(mercury.pos)) + (-G*mercury.mass*earth.mass/mag2(earth.pos-mercury.pos)*norm(mercury.pos)) + (-G*mercury.mass*mars.mass/mag2(mars.pos-mercury.pos)*norm(mercury.pos)) + (-G*mercury.mass*jupiter.mass/mag2(jupiter.pos-mercury.pos)*norm(mercury.pos))
 
     #updating momentum and position of Mercury
     mercury.momentum = mercury.momentum + dt*mercury.force
@@ -152,8 +153,9 @@ while (total < tmax):
     venusmercury.force = -mercuryvenus.force
     venusearth.force = -G*venus.mass*earth.mass/mag2(earth.pos-venus.pos)*norm(venus.pos)
     venusmars.force =-G*venus.mass*mars.mass/mag2(mars.pos-venus.pos)*norm(venus.pos)
-    venusjupiter.force = -G*venus.mass*earth.mass/mag2(jupiter.pos-venus.pos)*norm(venus.pos)
+    venusjupiter.force = -G*venus.mass*jupiter.mass/mag2(jupiter.pos-venus.pos)*norm(venus.pos)
     venustotal.force = venussun.force + venusmercury.force + venusearth.force + venusmars.force + venusjupiter.force
+    venus.force = (-G*venus.mass*sun.mass/mag2(venus.pos)*norm(venus.pos)) + (G*mercury.mass*venus.mass/mag2(venus.pos-mercury.pos)*norm(mercury.pos)) + (-G*venus.mass*earth.mass/mag2(earth.pos-venus.pos)*norm(venus.pos)) + (-G*venus.mass*mars.mass/mag2(mars.pos-venus.pos)*norm(venus.pos)) + (-G*venus.mass*jupiter.mass/mag2(jupiter.pos-venus.pos)*norm(venus.pos))
 
     #updating momentum and position of Venus
     venus.momentum = venus.momentum + dt*mercury.force
@@ -164,8 +166,9 @@ while (total < tmax):
     earthmercury.force = -mercuryearth.force
     earthvenus.force = -venusearth.force
     earthmars.force = -G*earth.mass*mars.mass / mag2(mars.pos - earth.pos)*norm(earth.pos)
-    earthjupiter.force = -G*earth.mass*mars.mass / mag2(jupiter.pos - earth.pos)*norm(earth.pos)
+    earthjupiter.force = -G*earth.mass*jupiter.mass / mag2(jupiter.pos - earth.pos)*norm(earth.pos)
     earthtotal.force = earthsun.force + earthmercury.force + earthvenus.force + earthmars.force + earthjupiter.force
+    earth.force = (-G*sun.mass*earth.mass / mag2(earth.pos)*norm(earth.pos)) + (G*mercury.mass*earth.mass/mag2(earth.pos-mercury.pos)*norm(mercury.pos)) + (G*venus.mass*earth.mass/mag2(earth.pos-venus.pos)*norm(venus.pos)) + (-G*earth.mass*mars.mass / mag2(mars.pos - earth.pos)*norm(earth.pos)) + (-G*earth.mass*mars.mass / mag2(jupiter.pos - earth.pos)*norm(earth.pos))
     
     # updating Earth's momentum and position
     earth.momentum = earth.momentum + dt*earthtotal.force
