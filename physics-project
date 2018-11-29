@@ -171,7 +171,7 @@ while (total < tmax):
     earth.force = (-G*sun.mass*earth.mass / mag2(earth.pos)*norm(earth.pos)) + (G*mercury.mass*earth.mass/mag2(earth.pos-mercury.pos)*norm(mercury.pos)) + (G*venus.mass*earth.mass/mag2(earth.pos-venus.pos)*norm(venus.pos)) + (-G*earth.mass*mars.mass / mag2(mars.pos - earth.pos)*norm(earth.pos)) + (-G*earth.mass*mars.mass / mag2(jupiter.pos - earth.pos)*norm(earth.pos))
     
     # updating Earth's momentum and position
-    earth.momentum = earth.momentum + dt*earthtotal.force
+    earth.momentum = earth.momentum + dt*earth.force
     earth.pos = earth.pos + dt * earth.momentum / earth.mass
     
     # forces calculated on Mars
@@ -184,7 +184,7 @@ while (total < tmax):
     mars.force = (-G*sun.mass*mars.mass / mag2(mars.pos)*norm(mars.pos)) + (G*mercury.mass*mars.mass/mag2(mars.pos-mercury.pos)*norm(mercury.pos)) + (G*venus.mass*mars.mass/mag2(mars.pos-venus.pos)*norm(venus.pos)) + (G*earth.mass*mars.mass / mag2(mars.pos - earth.pos)*norm(earth.pos)) + (-G*mars.mass*jupiter.mass / mag2(jupiter.pos - mars.pos)*norm(mars.pos))
      
     # updating Mars' momentum and position
-    mars.momentum = mars.momentum + dt * marstotal.force
+    mars.momentum = mars.momentum + dt * mars.force
     mars.pos = mars.pos + dt * mars.momentum / mars.mass
 
     # forces calculated on Jupiter
@@ -198,7 +198,7 @@ while (total < tmax):
 
 
     # updating Jupiter's momentum and position
-    jupiter.momentum = jupiter.momentum + dt*jupitertotal.force
+    jupiter.momentum = jupiter.momentum + dt*jupiter.force
     jupiter.pos = jupiter.pos + dt * jupiter.momentum / jupiter.mass
     
     # updating trails of the planets
