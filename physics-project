@@ -28,7 +28,7 @@ mercury.pos = vector(5.8e10,0,0)
 venus.pos = vector(1.08e11,0,0)
 earth.pos = vector(1.5e11,0,0)       
 mars.pos = vector(2.28e11,0,0)
-jupiter.pos = vector(7.78e1,0,0)
+jupiter.pos = vector(7.78e11,0,0)
 #
 sun.mass  = 2e30                    # Mass of the Sun   (kg)
 # Mass of the planets (kg)
