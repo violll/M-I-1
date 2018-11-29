@@ -90,23 +90,29 @@ while (total < tmax):
 #
 # Fill in the next 3 lines with the correct expressions
 #
-mercurysun.force
-mercuryvenus.force
-mercuryearth.force
-mercurymars.force
-mercuryjupiter.force
+#forces calculated on Mercury
+mercurysun.force = -G*mercury.mass*sun.mass/mag2(mercury.pos)*norm(mercury.pos)
+mercuryvenus.force = -G*mercury.mass*venus.mass/mag2(venus.pos-mercury.pos)*norm(mercury.pos)
+mercuryearth.force = -G*mercury.mass*earth.mass/mag2(earth.pos-mercury.pos)*norm(mercury.pos)
+mercurymars.force = -G*mercury.mass*mars.mass/mag2(mars.pos-mercury.pos)*norm(mercury.pos)
+mercuryjupiter.force = -G*mercury.mass*jupiter.mass/mag2(jupiter.pos-mercury.pos)*norm(mercury.pos)
 mercurytotal.force = mercurysun.force + mercuryvenus.force + mercuryearth.force + mercurymars.force + mercuryjupiter.force
-mercury.momentum
-mercury.pos
 
-venussun.force
+#updating momentum and position of Mercury
+mercury.momentum = mercury.momentum + dt*mercury.force
+mercury.pos = mercury.pos + dt * mercury.momentum / mercury.mass
+
+#forces calculated on Venus
+venussun.force = -G*venus.mass*sun.mass/mag2(venus.pos)*norm(venus.pos)
 venusmercury.force = -mercuryvenus.force
-venusearth.force = 
-venusmars.force =
-venusjupiter.force = 
+venusearth.force = -G*venus.mass*earth.mass/mag2(earth.pos-venus.pos)*norm(venus.pos)
+venusmars.force =-G*venus.mass*mars.mass/mag2(mars.pos-venus.pos)*norm(venus.pos)
+venusjupiter.force = -G*venus.mass*earth.mass/mag2(jupiter.pos-venus.pos)*norm(venus.pos)
 venustotal.force = venussun.force + venusmercury.force + venusearth.force + venusmars.force + venusjupiter.force
-venus.momentum
-venus.pos
+
+#updating momentum and position of Venus
+venus.momentum = venus.momentum + dt*mercury.force
+venus.pos = venus.pos + dt * venus.momentum / venus.mass
 
     earthsun.force = -G*sun.mass*earth.mass / mag2(earth.pos)*norm(earth.pos)   # compute the force that the Sun exerts on the Earth.
     earthmercury.force = -mercuryearth.force
