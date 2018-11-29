@@ -158,7 +158,7 @@ while (total < tmax):
     venus.force = (-G*venus.mass*sun.mass/mag2(venus.pos)*norm(venus.pos)) + (G*mercury.mass*venus.mass/mag2(venus.pos-mercury.pos)*norm(mercury.pos)) + (-G*venus.mass*earth.mass/mag2(earth.pos-venus.pos)*norm(venus.pos)) + (-G*venus.mass*mars.mass/mag2(mars.pos-venus.pos)*norm(venus.pos)) + (-G*venus.mass*jupiter.mass/mag2(jupiter.pos-venus.pos)*norm(venus.pos))
 
     #updating momentum and position of Venus
-    venus.momentum = venus.momentum + dt*mercury.force
+    venus.momentum = venus.momentum + dt*venus.force
     venus.pos = venus.pos + dt * venus.momentum / venus.mass
 
     # forces calculated on Earth
