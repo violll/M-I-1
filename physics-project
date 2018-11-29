@@ -84,6 +84,46 @@ earth.trail.append(pos = earth.pos)
 mars.trail.append(pos = mars.pos)
 jupiter.trail.append(pos = jupiter.pos)
 #
+#forces calculated on Mercury
+mercurysun.force = -G*mercury.mass*sun.mass/mag2(mercury.pos)*norm(mercury.pos)
+mercuryvenus.force = -G*mercury.mass*venus.mass/mag2(venus.pos-mercury.pos)*norm(mercury.pos)
+mercuryearth.force = -G*mercury.mass*earth.mass/mag2(earth.pos-mercury.pos)*norm(mercury.pos)
+mercurymars.force = -G*mercury.mass*mars.mass/mag2(mars.pos-mercury.pos)*norm(mercury.pos)
+mercuryjupiter.force = -G*mercury.mass*jupiter.mass/mag2(jupiter.pos-mercury.pos)*norm(mercury.pos)
+mercurytotal.force = mercurysun.force + mercuryvenus.force + mercuryearth.force + mercurymars.force + mercuryjupiter.force
+
+#forces calculated on Venus
+venussun.force = -G*venus.mass*sun.mass/mag2(venus.pos)*norm(venus.pos)
+venusmercury.force = -mercuryvenus.force
+venusearth.force = -G*venus.mass*earth.mass/mag2(earth.pos-venus.pos)*norm(venus.pos)
+venusmars.force =-G*venus.mass*mars.mass/mag2(mars.pos-venus.pos)*norm(venus.pos)
+venusjupiter.force = -G*venus.mass*earth.mass/mag2(jupiter.pos-venus.pos)*norm(venus.pos)
+venustotal.force = venussun.force + venusmercury.force + venusearth.force + venusmars.force + venusjupiter.force
+
+# forces calculated on Earth
+earthsun.force = -G*sun.mass*earth.mass / mag2(earth.pos)*norm(earth.pos)
+earthmercury.force = -mercuryearth.force
+earthvenus.force = -venusearth.force
+earthmars.force = -G*earth.mass*mars.mass / mag2(mars.pos - earth.pos)*norm(earth.pos)
+earthjupiter.force = -G*earth.mass*mars.mass / mag2(jupiter.pos - earth.pos)*norm(earth.pos)
+earthtotal.force = earthsun.force + earthmercury.force + earthvenus.force + earthmars.force + earthjupiter.force
+
+# forces calculated on Mars
+marssun.force = -G*sun.mass*mars.mass / mag2(mars.pos)*norm(mars.pos)
+marsmercury.force = -mercurymars.force
+marsvenus.force = -venusmars.force
+marsearth.force = -earthmars.force
+marsjupiter.force = -G*mars.mass*jupiter.mass / mag2(jupiter.pos - mars.pos)*norm(mars.pos)
+marstotal.force = marssun.force + marsmercury.force + marsvenus.force + marsearth.force + marsjupiter.force
+
+# forces calculated on Jupiter
+jupitersun.force = -G*sun.mass*jupiter.mass / mag2(jupiter.pos)*norm(earth.pos)
+jupitermercury.force = -mercuryjupiter.force
+jupitervenus.force = -venusjupiter.force
+jupiterearth.force = -earthjupiter.force
+jupitermars.force = -marsjupiter.force
+jupitertotal.force = jupitersun.force + jupitermercury.force + jupitervenus.force + jupiterearth.force + jupitermars.force
+
 # Define an arrow that points from the origin to the Earth.
 tmax = 3600 * 24 * 365.25                         # number of seconds in a year
 #
