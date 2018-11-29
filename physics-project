@@ -5,7 +5,7 @@ from visual import *
 #
 # Define the display window.
 #
-scene = display(title = "Earth's Orbit", width = 500, height = 500, range = 3.e11)
+scene = display(title = "Earth's Orbit", width = 500, height = 500, range = 8e11)
 #
 scene.autoscale = 0              # Turn off auto scaling of display.
 #
@@ -85,7 +85,7 @@ mars.trail.append(pos = mars.pos)
 jupiter.trail.append(pos = jupiter.pos)
 #
 # Define an arrow that points from the origin to the Earth.
-tmax = 3600 * 24 * 365.25                         # number of seconds in a year
+tmax = 3600 * 24 * 365.25 * 10                        # number of seconds in a year
 #
 # Start of the loop.
 #
