@@ -1,4 +1,3 @@
-
 #
 # VPython shell for planetary orbit program assignment
 #
@@ -114,43 +113,51 @@ venustotal.force = venussun.force + venusmercury.force + venusearth.force + venu
 venus.momentum = venus.momentum + dt*mercury.force
 venus.pos = venus.pos + dt * venus.momentum / venus.mass
 
-    earthsun.force = -G*sun.mass*earth.mass / mag2(earth.pos)*norm(earth.pos)   # compute the force that the Sun exerts on the Earth.
+    # forces calculated on Earth
+    earthsun.force = -G*sun.mass*earth.mass / mag2(earth.pos)*norm(earth.pos)
     earthmercury.force = -mercuryearth.force
     earthvenus.force = -venusearth.force
-    earthmars.force = 
-    earthjupiter.force = 
+    earthmars.force = -G*earth.mass*mars.mass / mag2(mars.pos - earth.pos)*norm(earth.pos)
+    earthjupiter.force = -G*earth.mass*mars.mass / mag2(jupiter.pos - earth.pos)*norm(earth.pos)
     earthtotal.force = earthsun.force + earthmercury.force + earthvenus.force + earthmars.force + earthjupiter.force
-    earth.momentum = earth.momentum + dt*earth.force             # update the Earth's momentum
-    earth.pos = earth.pos + dt * earth.momentum / earth.mass      # update the Earth's position
-#
+    
+    # updating Earth's momentum and position
+    earth.momentum = earth.momentum + dt*earthtotal.force
+    earth.pos = earth.pos + dt * earth.momentum / earth.mass
+    
+    # forces calculated on Mars
+    marssun.force = -G*sun.mass*mars.mass / mag2(mars.pos)*norm(mars.pos)
+    marsmercury.force = -mercurymars.force
+    marsvenus.force = -venusmars.force
+    marsearth.force = -earthmars.force
+    marsjupiter.force = -G*mars.mass*jupiter.mass / mag2(jupiter.pos - mars.pos)*norm(mars.pos)
+    marstotal.force = marssun.force + marsmercury.force + marsvenus.force + marsearth.force + marsjupiter.force
+    
+    # updating Mars' momentum and position
+    mars.momentum = mars.momentum + dt * marstotal.force
+    mars.pos = mars.pos + dt * mars.momentum / mars.mass
 
-marssun.force = 
-marsmercury.force = -mercurymars.force
-marsvenus.force = -venusmars.force
-marsearth.force = -earthmars.force
-marsjupiter.force = 
-marstotal.force = marssun.force + marsmercury.force + marsvenus.force + marsearth.force + marsjupiter.force
-mars.momentum = 
-mars.pos = 
+    # forces calculated on Jupiter
+    jupitersun.force = -G*sun.mass*jupiter.mass / mag2(jupiter.pos)*norm(earth.pos)
+    jupitermercury.force = -mercuryjupiter.force
+    jupitervenus.force = -venusjupiter.force
+    jupiterearth.force = -earthjupiter.force
+    jupitermars.force = -marsjupiter.force
+    jupitertotal.force = jupitersun.force + jupitermercury.force + jupitervenus.force + jupiterearth.force + jupitermars.force
 
-jupitersun.force = 
-jupitermercury.force = -mercuryjupiter.force
-jupitervenus.force = -venusjupiter.force
-jupiterearth.force = -earthjupiter.force
-jupitermars.force = -marsjupiter.force
-jupitertotal.force = jupitersun.force + jupitermercury.force + jupitervenus.force + jupiterearth.force + jupitermars.force
-jupiter.momentum = 
-jupiter.pos =
-
+    # updating Jupiter's momentum and position
+    jupiter.momentum = jupiter.momentum + dt*jupitertotal.force
+    jupiter.pos = jupiter.pos + dt * jupiter.momentum / jupiter.mass
+    
+    # updating trails of the planets
     mercury.trail.append(pos = mercury.pos)
-venus.trail.append(pos = venus.pos)
-earth.trail.append(pos = earth.pos)               
-mars.trail.append(pos = mars.pos)
-jupiter.trail.append(pos = jupiter.pos)
-
-#
+    venus.trail.append(pos = venus.pos)
+    earth.trail.append(pos = earth.pos)        
+    mars.trail.append(pos = mars.pos)
+    jupiter.trail.append(pos = jupiter.pos)
+    #
     total = total + dt                   # increment the time
-#
+    #
 # print this when the loop is done.
 #
 print earth.pos
