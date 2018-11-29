@@ -181,7 +181,7 @@ while (total < tmax):
     #marsearth.force = -earthmars.force
     #marsjupiter.force = -G*mars.mass*jupiter.mass / mag2(jupiter.pos - mars.pos)*norm(mars.pos)
     #marstotal.force = marssun.force + marsmercury.force + marsvenus.force + marsearth.force + marsjupiter.force
-    mars.force = (-G*sun.mass*mars.mass / mag2(mars.pos)*norm(mars.pos)) + (G*mercury.mass*mars.mass/mag2(mars.pos-mercury.pos)*norm(mercury.pos)) + (G*venus.mass*mars.mass/mag2(mars.pos-venus.pos)*norm(venus.pos)) + (G*earth.mass*mars.mass / mag2(mars.pos - earth.pos)*norm(earth.pos)) + (-G*mars.mass*jupiter.mass / mag2(jupiter.pos - mars.pos)*norm(mars.pos))
+    mars.force = (-G*sun.mass*mars.mass / mag2(mars.pos)*norm(mars.pos)) + (-G*mercury.mass*mars.mass/mag2(mars.pos-mercury.pos)*norm(mars.pos - mercury.pos)) + (-G*venus.mass*mars.mass/mag2(mars.pos-venus.pos)*norm(mars.pos-venus.pos)) + (-G*earth.mass*mars.mass / mag2(mars.pos - earth.pos)*norm(mars.pos-earth.pos)) + (-G*mars.mass*jupiter.mass / mag2(jupiter.pos - mars.pos)*norm(jupiter.pos - mars.pos))
      
     # updating Mars' momentum and position
     mars.momentum = mars.momentum + dt * mars.force
@@ -194,7 +194,7 @@ while (total < tmax):
     #jupiterearth.force = -earthjupiter.force
     #jupitermars.force = -marsjupiter.force
     #jupitertotal.force = jupitersun.force + jupitermercury.force + jupitervenus.force + jupiterearth.force + jupitermars.force
-    jupiter.force = (-G*sun.mass*jupiter.mass / mag2(jupiter.pos)*norm(earth.pos)) + (G*mercury.mass*jupiter.mass/mag2(jupiter.pos-mercury.pos)*norm(mercury.pos)) + (G*venus.mass*jupiter.mass/mag2(jupiter.pos-venus.pos)*norm(venus.pos)) + (G*earth.mass*jupiter.mass / mag2(jupiter.pos - earth.pos)*norm(earth.pos)) + (G*mars.mass*jupiter.mass / mag2(jupiter.pos - mars.pos)*norm(mars.pos))
+    jupiter.force = (-G*sun.mass*jupiter.mass / mag2(jupiter.pos)*norm(jupiter.pos)) + (-G*mercury.mass*jupiter.mass/mag2(jupiter.pos-mercury.pos)*norm(jupiter.pos-mercury.pos)) + (-G*venus.mass*jupiter.mass/mag2(jupiter.pos-venus.pos)*norm(jupiter.pos-venus.pos)) + (-G*earth.mass*jupiter.mass / mag2(jupiter.pos - earth.pos)*norm(jupiter.pos-earth.pos)) + (-G*mars.mass*jupiter.mass / mag2(jupiter.pos - mars.pos)*norm(jupiter.pos-mars.pos))
 
 
     # updating Jupiter's momentum and position
