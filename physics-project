@@ -29,7 +29,12 @@ venus.pos = vector(1.08e11,0,0)
 earth.pos = vector(1.5e11,0,0)       
 mars.pos = vector(2.28e11,0,0)
 jupiter.pos = vector(7.78e11,0,0)
-#
+#jupiter.pos = (mars.pos + earth.pos)/2 #J between E and M
+#jupiter.pos = (earth.pos + venus.pos)/2    # J between V and E
+#jupiter.pos = (venus.pos + mercury.pos)/2  #J between M and V
+#jupiter.pos = (mercury.pos + sun.pos)/2    #J between S and M
+
+
 sun.mass  = 2e30                    # Mass of the Sun   (kg)
 # Mass of the planets (kg)
 mercury.mass = 3.285e23
