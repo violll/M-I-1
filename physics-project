@@ -9,11 +9,17 @@ from visual.graph import *
 forceplot = display(x=0,y=50,title="Forces",width=800,height=100)
 scene = display(title = "Earth's Orbit", width = 500, height = 500, range = 8e11)
 #
-lineMercury = gcurve(color = color.magenta)
-lineVenus = gcurve(color = color.yellow)
-lineEarth = gcurve(color = color.blue)
-lineMars = gcurve(color = color.red)
-lineJupiter = gcurve(color = color.orange)
+lineMercuryF = gcurve(color = color.magenta)
+lineVenusF = gcurve(color = color.yellow)
+lineEarthF = gcurve(color = color.blue)
+lineMarsF = gcurve(color = color.red)
+lineJupiterF = gcurve(color = color.orange)
+#
+lineMercuryP = gcurve(color = color.magenta)
+lineVenusP = gcurve(color = color.yellow)
+lineEarthP = gcurve(color = color.blue)
+lineMarsP = gcurve(color = color.red)
+lineJupiterP = gcurve(color = color.orange)
 #
 scene.autoscale = 0              # Turn off auto scaling of display.
 #
@@ -190,11 +196,17 @@ while (total < tmax):
     mars.trail.append(pos = mars.pos)
     jupiter.trail.append(pos = jupiter.pos)
     #
-    lineMercury.plot(pos=(total,mag(mercury.force)))
-    lineVenus.plot(pos=(total,mag(venus.force)))
-    lineEarth.plot(pos=(total,mag(earth.force)))
-    lineMars.plot(pos=(total,mag(mars.force)))
-    lineJupiter.plot(pos=(total,mag(jupiter.force)))
+    lineMercuryF.plot(pos=(total,mag(mercury.force)))
+    lineVenusF.plot(pos=(total,mag(venus.force)))
+    lineEarthF.plot(pos=(total,mag(earth.force)))
+    lineMarsF.plot(pos=(total,mag(mars.force)))
+    lineJupiterF.plot(pos=(total,mag(jupiter.force)))
+    #
+    lineMercuryP.plot(pos=(total,mag(mercury.pos)))
+    lineVenusP.plot(pos=(total,mag(venus.pos)))
+    lineEarthP.plot(pos=(total,mag(earth.pos)))
+    lineMarsP.plot(pos=(total,mag(mars.pos)))
+    lineJupiterP.plot(pos=(total,mag(jupiter.pos)))
     #
     total = total + dt                   # increment the time
     #
