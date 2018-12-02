@@ -30,9 +30,18 @@ earth.pos = vector(1.5e11,0,0)
 mars.pos = vector(2.28e11,0,0)
 jupiter.pos = vector(7.78e11,0,0)
 #jupiter.pos = (mars.pos + earth.pos)/2 #J between E and M
+#jupiter.pos = 0.99 * mars.pos              #99% of mars' radius
+#jupiter.pos = 1.01 * mars.pos              #101% of mars' radius
 #jupiter.pos = (earth.pos + venus.pos)/2    # J between V and E
+#jupiter.pos = 0.99 * earth.pos             #99% of earth's radius
+#jupiter.pos = 1.01 * earth.pos             #101% of earth's radius
 #jupiter.pos = (venus.pos + mercury.pos)/2  #J between M and V
+#jupiter.pos = 0.99 * venus.pos             #99% of venus' radius
+#jupiter.pos = 1.01 * venus.pos             #101% of venus' radius
 #jupiter.pos = (mercury.pos + sun.pos)/2    #J between S and M
+#jupiter.pos = 0.99 * mercury.pos           #99% of mercury's radius
+#jupiter.pos = 1.01 * mercury.pos           #101% of mercury's radius
+#jupiter.pos = 1.01 * sun.pos               #101% of the sun's radius
 
 
 sun.mass  = 2e30                    # Mass of the Sun   (kg)
