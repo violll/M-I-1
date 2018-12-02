@@ -2,6 +2,7 @@
 # VPython shell for planetary orbit program assignment
 #
 from visual import *
+from visual.graph import *
 #
 # Define the display window.
 #
@@ -189,11 +190,11 @@ while (total < tmax):
     mars.trail.append(pos = mars.pos)
     jupiter.trail.append(pos = jupiter.pos)
     #
-    lineMercury.plot(pos=(total,mag(mercury.force))
-    lineVenus.plot(pos=(total,mag(venus.force))
-    lineEarth.plot(pos=(total,mag(earth.force))
-    lineMars.plot(pos=(total,mag(mars.force))
-    lineJupiter.plot(pos=(total,mag(jupiter.force))
+    lineMercury.plot(pos=(total,mag(mercury.force)))
+    lineVenus.plot(pos=(total,mag(venus.force)))
+    lineEarth.plot(pos=(total,mag(earth.force)))
+    lineMars.plot(pos=(total,mag(mars.force)))
+    lineJupiter.plot(pos=(total,mag(jupiter.force)))
     #
     total = total + dt                   # increment the time
     #
