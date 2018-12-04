@@ -6,9 +6,11 @@ from visual.graph import *
 #
 # Define the display window.
 #
-posplot = display(x=0, y=1e12, title="Positions", width=800, height=100)
-forceplot = display(x=0,y=50,title="Forces",width=800,height=100)
-scene = display(title = "Earth's Orbit", width = 500, height = 500, range = 8e11)
+#posplot = gdisplay(x=0, y=50, title="Positions", width=800, height=100)
+forceplot = gdisplay(x=0,y=50,title="Forces",width=800,height=100)
+scene = display(title = "Earth's Orbit", width = 500, height = 500,
+                 range = 8e11)
+forceplot.autoscale=0
 #
 lineMercuryF = gcurve(color = color.magenta)
 lineVenusF = gcurve(color = color.yellow)
@@ -43,9 +45,9 @@ mercury.pos = vector(5.8e10,0,0)
 venus.pos = vector(1.08e11,0,0)
 earth.pos = vector(1.5e11,0,0)       
 mars.pos = vector(2.28e11,0,0)
-jupiter.pos = vector(7.78e11,0,0)
+#jupiter.pos = vector(7.78e11,0,0)
 #jupiter.pos = (mars.pos + earth.pos)/2 #J between E and M
-#jupiter.pos = 0.99 * mars.pos              #99% of mars' radius
+jupiter.pos = 0.99 * mars.pos              #99% of mars' radius
 #jupiter.pos = 1.01 * mars.pos              #101% of mars' radius
 #jupiter.pos = (earth.pos + venus.pos)/2    # J between V and E
 #jupiter.pos = 0.99 * earth.pos             #99% of earth's radius
