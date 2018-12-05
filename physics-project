@@ -10,7 +10,6 @@ from visual.graph import *
 forceplot = gdisplay(x=0,y=50,title="Forces",width=800,height=100)
 scene = display(title = "Earth's Orbit", width = 500, height = 500,
                  range = 8e11)
-forceplot.autoscale=0
 #
 lineMercuryF = gcurve(color = color.magenta)
 lineVenusF = gcurve(color = color.yellow)
@@ -45,9 +44,9 @@ mercury.pos = vector(5.8e10,0,0)
 venus.pos = vector(1.08e11,0,0)
 earth.pos = vector(1.5e11,0,0)       
 mars.pos = vector(2.28e11,0,0)
-#jupiter.pos = vector(7.78e11,0,0)
+jupiter.pos = vector(7.78e11,0,0)
 #jupiter.pos = (mars.pos + earth.pos)/2 #J between E and M
-jupiter.pos = 0.99 * mars.pos              #99% of mars' radius
+#jupiter.pos = 0.99 * mars.pos              #99% of mars' radius
 #jupiter.pos = 1.01 * mars.pos              #101% of mars' radius
 #jupiter.pos = (earth.pos + venus.pos)/2    # J between V and E
 #jupiter.pos = 0.99 * earth.pos             #99% of earth's radius
@@ -58,7 +57,6 @@ jupiter.pos = 0.99 * mars.pos              #99% of mars' radius
 #jupiter.pos = (mercury.pos + sun.pos)/2    #J between S and M
 #jupiter.pos = 0.99 * mercury.pos           #99% of mercury's radius
 #jupiter.pos = 1.01 * mercury.pos           #101% of mercury's radius
-#jupiter.pos = 1.01 * sun.pos               #101% of the sun's radius
 
 
 sun.mass  = 2e30                    # Mass of the Sun   (kg)
@@ -76,7 +74,7 @@ earth.velocity = vector(0,30000,0)
 mars.velocity = vector(0,24100,0)
 jupiter.velocity = vector(0,13100,0)
 #
-dt = 1e4                         # time increment in seconds (choose a sensible value)
+dt = 1e5                         # time increment in seconds (choose a sensible value)
 #
 total = 0                       # initialize the total elapsed time
 #
@@ -86,10 +84,10 @@ sun.scale   = 1e1
 earth.scale = 5e2
 #
 sun.radius   = 7.e8 * sun.scale
-mercury.radius = 2.44e6 * earth.scale
-venus.radius =6e6 * earth.scale
-earth.radius = 6.4e6 * earth.scale
-mars.radius = 3.4e6 * earth.scale
+mercury.radius = 2.44e6 * 5 * earth.scale
+venus.radius =6e6 * 5 * earth.scale
+earth.radius = 6.4e6 * 5 * earth.scale
+mars.radius = 3.4e6 * 5 * earth.scale
 jupiter.radius = 69.9e6 * earth.scale
 #
 # Initialize the momentum and path of the Earth.
@@ -116,8 +114,19 @@ mars.trail.append(pos = mars.pos)
 jupiter.trail.append(pos = jupiter.pos)
 #
 # Define an arrow that points from the origin to the Earth.
-tmax = 3600 * 24 * 365.25 * 10                        # number of seconds in a year
+tmax = 3600 * 24 * 365.25 * 12                    # number of seconds in a year
 #
+t_crossme = 0
+t_crossv = 0
+t_crosse = 0
+t_crossma = 0
+t_crossj = 0
+mercuryold_y=0
+venusold_y=0
+earthold_y=0
+marsold_y=0
+jupiterold_y=0
+
 # Start of the loop.
 #
 while (total < tmax):
@@ -139,6 +148,13 @@ while (total < tmax):
     mercury.momentum = mercury.momentum + dt*mercury.force
     mercury.pos = mercury.pos + dt * mercury.momentum / mercury.mass
 
+    #finding period of Mercury's orbit
+    if (mercuryold_y<=0) & (mercury.y>0):
+        mercuryperiod = total-t_crossme
+        t_crossme = total
+    mercuryold_y=mercury.y
+
+
     #forces calculated on Venus
     #venussun.force = -G*venus.mass*sun.mass/mag2(venus.pos)*norm(venus.pos)
     #venusmercury.force = -mercuryvenus.force
@@ -152,6 +168,13 @@ while (total < tmax):
     venus.momentum = venus.momentum + dt*venus.force
     venus.pos = venus.pos + dt * venus.momentum / venus.mass
 
+    #finding period of Venus's orbit
+    if (venusold_y<=0) & (venus.y>0):
+        venusperiod = total-t_crossv
+        t_crossv = total
+    venusold_y=venus.y
+
+
     # forces calculated on Earth
     #earthsun.force = -G*sun.mass*earth.mass / mag2(earth.pos)*norm(earth.pos)
     #earthmercury.force = -mercuryearth.force
@@ -159,12 +182,18 @@ while (total < tmax):
     #earthmars.force = -G*earth.mass*mars.mass / mag2(mars.pos - earth.pos)*norm(earth.pos)
     #earthjupiter.force = -G*earth.mass*jupiter.mass / mag2(jupiter.pos - earth.pos)*norm(earth.pos)
     #earthtotal.force = earthsun.force + earthmercury.force + earthvenus.force + earthmars.force + earthjupiter.force
-    earth.force = (-G*sun.mass*earth.mass / mag2(earth.pos)*norm(earth.pos)) + (-G*mercury.mass*earth.mass/mag2(earth.pos-mercury.pos)*norm(earth.pos - mercury.pos)) + (-G*venus.mass*earth.mass/mag2(earth.pos-venus.pos)*norm(earth.pos - venus.pos)) + (-G*earth.mass*mars.mass / mag2(mars.pos - earth.pos)*norm(mars.pos - earth.pos)) + (-G*earth.mass*mars.mass / mag2(jupiter.pos - earth.pos)*norm(jupiter.pos - earth.pos))
+    earth.force = (-G*sun.mass*earth.mass / mag2(earth.pos)*norm(earth.pos)) + (-G*mercury.mass*earth.mass/mag2(earth.pos-mercury.pos)*norm(earth.pos - mercury.pos)) + (-G*venus.mass*earth.mass/mag2(earth.pos-venus.pos)*norm(earth.pos - venus.pos)) + (-G*earth.mass*mars.mass / mag2(mars.pos - earth.pos)*norm(mars.pos - earth.pos)) + (-G*earth.mass*jupiter.mass / mag2(jupiter.pos - earth.pos)*norm(jupiter.pos - earth.pos))
     
     # updating Earth's momentum and position
     earth.momentum = earth.momentum + dt*earth.force
     earth.pos = earth.pos + dt * earth.momentum / earth.mass
     
+    #finding period of Earth's orbit
+    if (earthold_y<=0) & (earth.y>0):
+        earthperiod = total-t_crosse
+        t_crosse = total
+    earthold_y=earth.y
+
     # forces calculated on Mars
     #marssun.force = -G*sun.mass*mars.mass / mag2(mars.pos)*norm(mars.pos)
     #marsmercury.force = -mercurymars.force
@@ -178,6 +207,12 @@ while (total < tmax):
     mars.momentum = mars.momentum + dt * mars.force
     mars.pos = mars.pos + dt * mars.momentum / mars.mass
 
+    #finding period of Mars's orbit
+    if (marsold_y<=0) & (mars.y>0):
+        marsperiod = total-t_crossma
+        t_crossma = total
+    marsold_y=mars.y
+
     # forces calculated on Jupiter
     #jupitersun.force = -G*sun.mass*jupiter.mass / mag2(jupiter.pos)*norm(earth.pos)
     #jupitermercury.force = -mercuryjupiter.force
@@ -187,6 +222,11 @@ while (total < tmax):
     #jupitertotal.force = jupitersun.force + jupitermercury.force + jupitervenus.force + jupiterearth.force + jupitermars.force
     jupiter.force = (-G*sun.mass*jupiter.mass / mag2(jupiter.pos)*norm(jupiter.pos)) + (-G*mercury.mass*jupiter.mass/mag2(jupiter.pos-mercury.pos)*norm(jupiter.pos-mercury.pos)) + (-G*venus.mass*jupiter.mass/mag2(jupiter.pos-venus.pos)*norm(jupiter.pos-venus.pos)) + (-G*earth.mass*jupiter.mass / mag2(jupiter.pos - earth.pos)*norm(jupiter.pos-earth.pos)) + (-G*mars.mass*jupiter.mass / mag2(jupiter.pos - mars.pos)*norm(jupiter.pos-mars.pos))
 
+    #finding period of Jupiter's orbit
+    if (jupiterold_y<=0) & (jupiter.y>0):
+        jupiterperiod = total-t_crossj
+        t_crossj = total
+    jupiterold_y=jupiter.y
 
     # updating Jupiter's momentum and position
     jupiter.momentum = jupiter.momentum + dt*jupiter.force
@@ -215,5 +255,14 @@ while (total < tmax):
     #
 # print this when the loop is done.
 #
-print earth.pos
+print "Mercury period:"
+print mercuryperiod
+print "Venus period:"
+print venusperiod
+print "Earth period:"
+print earthperiod
+print "Mars period:"
+print marsperiod
+print "Jupiter period:"
+print jupiterperiod
 print 'All done.'
